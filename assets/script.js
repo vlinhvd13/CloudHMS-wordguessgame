@@ -56,10 +56,6 @@ async function removeWord() {
   let selectedIndex = $("word-list").selectedIndex;
   $("word-list").remove(selectedIndex);
   //remove from array and save to local storage
-  words.splice(selectedIndex, 1);
-  hints.splice(selectedIndex, 1);
-  localStorage.setItem(LOCALSTORAGE_WORD, JSON.stringify(words));
-  localStorage.setItem(LOCALSTORAGE_HINT, JSON.stringify(hints));
   const data = await axios.get('/players')
   .then(response => {
     const players = response.data;
@@ -69,6 +65,13 @@ async function removeWord() {
   .catch(error => {
     console.error('Error fetching players:', error);
   });
+  words = data[0].words;
+  hints = data[0].hint
+  words.splice(selectedIndex, 1);
+  hints.splice(selectedIndex, 1);
+  localStorage.setItem(LOCALSTORAGE_WORD, JSON.stringify(words));
+  localStorage.setItem(LOCALSTORAGE_HINT, JSON.stringify(hints));
+
   const plater1 = {
     _id : data[0]._id,
     words: words,
@@ -169,17 +172,30 @@ async function loadData() {
   }
   // setinterval to read score
   //
-  if (document.body.contains($("player-left-score"))) {
-    setInterval(function() {
-      $("player-left-score").innerHTML = localStorage.getItem(LOCALSTORAGE_PLAYER_SCORE_1)
-      $("player-left-score").innerHTML =  parseInt(data[0].score)
+  // if (document.body.contains($("player-left-score"))) {
+  //   setInterval(function() {
+  //     $("player-left-score").innerHTML = localStorage.getItem(LOCALSTORAGE_PLAYER_SCORE_1)
+  //     $("player-left-score").innerHTML =  parseInt(data[0].score)
 
+  //   }, 1000);
+  // }
+  // if (document.body.contains($("player-right-score"))) {
+  //   setInterval(function() {
+  //     $("player-right-score").innerHTML = localStorage.getItem(LOCALSTORAGE_PLAYER_SCORE_2)
+  //     $("player-right-score").innerHTML =  parseInt(data[1].score)
+  //   }, 1000);
+  // }
+  if (document.body.contains(document.getElementById("player-left-score"))) {
+    setInterval(function() {
+      var score = parseInt(localStorage.getItem(LOCALSTORAGE_PLAYER_SCORE_1));
+      document.getElementById("player-left-score").innerHTML = score;
     }, 1000);
   }
-  if (document.body.contains($("player-right-score"))) {
+  
+  if (document.body.contains(document.getElementById("player-right-score"))) {
     setInterval(function() {
-      $("player-right-score").innerHTML = localStorage.getItem(LOCALSTORAGE_PLAYER_SCORE_2)
-      $("player-right-score").innerHTML =  parseInt(data[1].score)
+      var score = parseInt(localStorage.getItem(LOCALSTORAGE_PLAYER_SCORE_2));
+      document.getElementById("player-right-score").innerHTML = score;
     }, 1000);
   }
 }
