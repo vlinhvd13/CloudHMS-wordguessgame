@@ -186,22 +186,18 @@ async function loadData() {
   //   }, 1000);
   // }
   if (document.body.contains(document.getElementById("player-left-score"))) {
-    setInterval(function() {
-      var score = parseInt(localStorage.getItem(LOCALSTORAGE_PLAYER_SCORE_1));
-      document.getElementById("player-left-score").innerHTML = score;
-    }, 1000);
+    var score = parseInt(data[0].score);
+    document.getElementById("player-left-score").innerHTML = score;
   }
   
   if (document.body.contains(document.getElementById("player-right-score"))) {
-    setInterval(function() {
-      var score = parseInt(localStorage.getItem(LOCALSTORAGE_PLAYER_SCORE_2));
-      document.getElementById("player-right-score").innerHTML = score;
-    }, 1000);
+    var score = parseInt(data[1].score);
+    document.getElementById("player-right-score").innerHTML = score;
   }
 }
 
 window.onload = function() {
-  loadData();
+  setInterval(function() {loadData()}, 1000);
   initialGame()
   winsScore()
   lossesScore() 
