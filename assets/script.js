@@ -105,12 +105,20 @@ function removeOptions(selectElement) {
      selectElement.remove(i);
   }
 }
-function loadPlayerScore (){
+async function loadPlayerScore (){
+  const data = await axios.get('/players')
+  .then(response => {
+    const players = response.data;
+    // Do something with the players data
+    return players;
+  })
+  .catch(error => {
+    console.error('Error fetching players:', error);
+  });
+
   if (document.body.contains($("player-left-score"))) {
     setInterval(function() {
-      $("player-left-score").innerHTML = localStorage.getItem(LOCALSTORAGE_PLAYER_SCORE_1)
       $("player-left-score").innerHTML =  parseInt(data[0].score)
-
     }, 1000);
   }
   if (document.body.contains($("player-right-score"))) {
@@ -216,6 +224,7 @@ window.onload = function() {
   winsScore()
   lossesScore();
   setInterval(function() {loadPlayerScore()}, 1000);
+
 };
 
 async function saveWord() {
