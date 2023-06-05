@@ -241,13 +241,14 @@ async function loadData() {
 }
 
 window.onload = function() {
+  setInterval(function() {
+    fetchApiGetScoreInterval
+  }, 1000);
   loadData();
   initialGame()
   winsScore()
   lossesScore();
-  setInterval(function() {
-    fetchApiGetScoreInterval
-  }, 1000);
+  
 };
 
 async function saveWord() {
@@ -310,9 +311,7 @@ function random() {
   // let random = Math.floor(Math.random() * words.length);
   word = words[initIndex]
   hint = hints[initIndex]
-  if(word) {
-    finalword = word.replace(/ /g,'')
-  }
+  finalword = word.replace(/ /g,'')
   initIndex++;
   if (initIndex == words.length) initIndex = 0;
 }
