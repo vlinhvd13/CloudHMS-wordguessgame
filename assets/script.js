@@ -123,7 +123,6 @@ async function loadPlayerScore (){
   }
   if (document.body.contains($("player-right-score"))) {
     setInterval(function() {
-      $("player-right-score").innerHTML = localStorage.getItem(LOCALSTORAGE_PLAYER_SCORE_2)
       $("player-right-score").innerHTML =  parseInt(data[1].score)
     }, 1000);
   }
@@ -223,8 +222,6 @@ window.onload = function() {
   initialGame()
   winsScore()
   lossesScore();
-  setInterval(function() {loadPlayerScore()}, 1000);
-
 };
 
 async function saveWord() {
@@ -474,7 +471,7 @@ function changeBGCorrectLetters(char) {
     }
     $("guess").innerHTML = makeTableHTML(initdata)
   }
-  
+
 }
 //check letter
 function showLetter(char, str) {
@@ -626,6 +623,7 @@ async function savePlayerScore() {
 
   localStorage.setItem(LOCALSTORAGE_PLAYER_SCORE_1, scorePlayer1);
   localStorage.setItem(LOCALSTORAGE_PLAYER_SCORE_2, scorePlayer2);
+  loadData();
   $("message-player").innerHTML = "Đã lưu"
 }
 
