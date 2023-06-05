@@ -242,7 +242,7 @@ async function loadData() {
 
 window.onload = function() {
   setInterval(function() {
-    fetchApiGetScoreInterval
+    fetchApiGetScoreInterval();
   }, 1000);
   loadData();
   initialGame()
