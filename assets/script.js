@@ -310,7 +310,9 @@ function random() {
   // let random = Math.floor(Math.random() * words.length);
   word = words[initIndex]
   hint = hints[initIndex]
-  finalword = word.replace(/ /g,'')
+  if(word) {
+    finalword = word.replace(/ /g,'')
+  }
   initIndex++;
   if (initIndex == words.length) initIndex = 0;
 }
