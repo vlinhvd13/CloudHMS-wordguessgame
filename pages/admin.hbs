@@ -1,0 +1,71 @@
+<!-- admin.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Admin</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Londrina+Solid|PT+Sans"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="container">
+      <div class="main-container admin">
+        <h1>Nhập điểm người chơi</h1>
+        <div class="input-score-player-left">
+          <p>
+            Điểm người chơi 1 (Đội đỏ)
+            <input style="padding: 5px;" type="number" id="input-score-player-1" value="0" size="20px" />
+            <br/>
+            <br />
+          </p>
+          <p>
+            Điểm người chơi 2 (Đội vàng)
+            <input style="padding: 5px;" type="number" id="input-score-player-2" value="0" size="20px" />
+            <br/>
+            <br />
+            <button style="padding: 5px;" type="button" onclick="savePlayerScore()" >Lưu lại</button>
+            &nbsp; &nbsp; <span style="color: blue; display: inline-block;" id="message-player"></span>
+            <br/>
+            <br />
+          </p>
+        </div>
+        
+        <hr />
+        <h1>Nhập dữ liệu đoán từ</h1>
+        <div class="col-left">
+          <p>
+            <h4>Nhập từ (Tiếng việt không dấu)</h4>
+            <input type="text" id="input-word" size="70px" />
+            <br/>
+            <br/>
+            <h4>Nhập gợi ý</h4>
+            <textarea cols="60" rows="10" id="input-hint" ></textarea>
+            <br/>
+            <br />
+            <button type="button" id="save" onclick="saveWord()" >Lưu lại</button>
+            &nbsp; &nbsp; <div id="message"></div>
+          </p>
+        </div>
+        <div class="col-right">
+          <p>
+            <h4>Danh sách từ hiện có</h4>
+            <select name="word" size="5" id="word-list">  
+            </select>  <br/>
+            <br />
+            <button type="button" id="remove" onclick="removeWord()" >Xóa</button>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      Copyright © 2022 VinHMS
+    </div>
+    <script type="text/javascript" src="https://unpkg.com/axios@1.4.0/dist/axios.min.js"></script>
+    <script src="/script.js"></script>
+  </body>
+</html>
