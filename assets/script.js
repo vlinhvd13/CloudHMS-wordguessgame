@@ -65,8 +65,7 @@ async function removeWord() {
   .catch(error => {
     console.error('Error fetching players:', error);
   });
-  words = data[0].words;
-  hints = data[0].hint
+
   words.splice(selectedIndex, 1);
   hints.splice(selectedIndex, 1);
   localStorage.setItem(LOCALSTORAGE_WORD, JSON.stringify(words));
