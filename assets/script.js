@@ -105,7 +105,21 @@ function removeOptions(selectElement) {
      selectElement.remove(i);
   }
 }
+function loadPlayerScore (){
+  if (document.body.contains($("player-left-score"))) {
+    setInterval(function() {
+      $("player-left-score").innerHTML = localStorage.getItem(LOCALSTORAGE_PLAYER_SCORE_1)
+      $("player-left-score").innerHTML =  parseInt(data[0].score)
 
+    }, 1000);
+  }
+  if (document.body.contains($("player-right-score"))) {
+    setInterval(function() {
+      $("player-right-score").innerHTML = localStorage.getItem(LOCALSTORAGE_PLAYER_SCORE_2)
+      $("player-right-score").innerHTML =  parseInt(data[1].score)
+    }, 1000);
+  }
+}
 async function loadData() {
   removeOptions($("word-list"))
 
@@ -172,19 +186,19 @@ async function loadData() {
   }
   // setinterval to read score
   //
-  // if (document.body.contains($("player-left-score"))) {
-  //   setInterval(function() {
-  //     $("player-left-score").innerHTML = localStorage.getItem(LOCALSTORAGE_PLAYER_SCORE_1)
-  //     $("player-left-score").innerHTML =  parseInt(data[0].score)
+  if (document.body.contains($("player-left-score"))) {
+    setInterval(function() {
+      $("player-left-score").innerHTML = localStorage.getItem(LOCALSTORAGE_PLAYER_SCORE_1)
+      $("player-left-score").innerHTML =  parseInt(data[0].score)
 
-  //   }, 1000);
-  // }
-  // if (document.body.contains($("player-right-score"))) {
-  //   setInterval(function() {
-  //     $("player-right-score").innerHTML = localStorage.getItem(LOCALSTORAGE_PLAYER_SCORE_2)
-  //     $("player-right-score").innerHTML =  parseInt(data[1].score)
-  //   }, 1000);
-  // }
+    }, 1000);
+  }
+  if (document.body.contains($("player-right-score"))) {
+    setInterval(function() {
+      $("player-right-score").innerHTML = localStorage.getItem(LOCALSTORAGE_PLAYER_SCORE_2)
+      $("player-right-score").innerHTML =  parseInt(data[1].score)
+    }, 1000);
+  }
   if (document.body.contains(document.getElementById("player-left-score"))) {
     var score = parseInt(data[0].score);
     document.getElementById("player-left-score").innerHTML = score;
@@ -197,10 +211,11 @@ async function loadData() {
 }
 
 window.onload = function() {
-  setInterval(function() {loadData()}, 1000);
+  loadData();
   initialGame()
   winsScore()
-  lossesScore() 
+  lossesScore();
+  setInterval(function() {loadPlayerScore()}, 1000);
 };
 
 async function saveWord() {
